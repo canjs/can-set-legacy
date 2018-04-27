@@ -17,8 +17,7 @@ algebra.intersection(
   @param  {can-set-legacy/Set} b A set.
   @return {can-set-legacy/Set|Boolean} If an object is returned, it
   represents the intersection of sets _A_ and _B_ (_A_ ∩ _B_).
-
-  If `true` is returned, that means that an intersection exists, but no set object
-  can be returned that represents that set.
-
-  If `false` is returned, that means there is no intersection.
+  - If [can-query-logic.EMPTY] is returned, that means there is no difference or the sets are not comparable.
+  - If [can-query-logic.UNDEFINABLE] is returned, that means that _B_ is a subset of _A_, but no set object
+    can be returned that represents that set.
+  - If [can-query-logic.UNKNOWABLE] is returned, that means a result is unable to be determined.

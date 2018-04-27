@@ -45,6 +45,89 @@ algebra.getSubset( { start: 2, end: 3 }, { start: 1, end: 4 },
 
 @body
 
+## Legacy Use
+
+Use `can-set-legacy` as a replacement for CanJS 3.0 and 4.0's `can-set` package.  In CanJS 3.0 and 4.0, one created
+an [can-set-legacy.Algebra] to customize how requests were made and passed that to [can-connect] like:
+
+```js
+import set from "can-set";
+import connect from "can-connect";
+import constructor from "can-connect/constructor/constructor";
+import dataUrl from "can-connect/data/url/url";
+import connectMap from "can-connect/can/map/map";
+
+var todoAlgebra = new set.Algebra(
+  set.props.boolean("complete"),
+  set.props.id("_id")
+);
+
+const todoConnection = connect( [
+	connectMap
+	constructor,
+	connectMap
+], {
+	cacheConnection: cacheConnection,
+	url: "/todos",
+	algebra: todoAlgebra
+});
+```
+
+In CanJS 5.0, [can-query-logic] has replaced `can-set`.  However, you can still use `can-set-legacy`
+to configure a `queryLogic` instance with the same configuration API as the old `can-set`. In 5.0, you can write:
+
+```js
+import set from "can-set-legacy";
+import connect from "can-connect";
+import constructor from "can-connect/constructor/constructor";
+import dataUrl from "can-connect/data/url/url";
+import connectMap from "can-connect/can/map/map";
+
+var todoQueryLogic = new set.Algebra(
+  set.props.boolean("complete"),
+  set.props.id("_id")
+);
+
+const todoConnection = connect( [
+	connectMap
+	constructor,
+	connectMap
+], {
+	cacheConnection: cacheConnection,
+	url: "/todos",
+	queryLogic: queryLogic
+});
+```
+
+
+The following `queryLogic` instance returned by `new set.Algebra` created with `can-set-legacy`:
+
+```js
+import set from "can-set-legacy";
+
+var todoQueryLogic = new set.Algebra(
+  set.props.boolean("complete"),
+  set.props.id("_id")
+);
+```
+
+... is nearly identical to the behavior of the 3.0 and 4.0's `can-set`. The major difference is that
+it's `union`, `intersection`, and `difference` methods will return:
+
+- [can-query-logic.EMPTY] instead of `false`
+- [can-query-logic.UNDEFINABLE] instead of `true`
+- [can-query-logic.UNKNOWABLE] instead of `undefined`
+
+For example:
+
+```js
+todoQueryLogic.difference({
+	foo: "bar"
+}, {
+	foo: "bar"
+}) //-> QueryLogic.EMPTY
+```
+
 ## Use
 
 A [can-set-legacy/Set] is a plain JavaScript object used to represent a
