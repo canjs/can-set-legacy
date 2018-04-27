@@ -3,7 +3,7 @@ var QUnit = require("steal-qunit");
 var set = require('../can-set-legacy'),
 	props = set.props;
 
-QUnit.module("can-set props.id");
+QUnit.module("can-set-legacy props.id");
 
 test("id set.difference", function(){
 

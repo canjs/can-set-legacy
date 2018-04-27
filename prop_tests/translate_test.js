@@ -5,7 +5,7 @@ var set = require('../can-set-legacy');
 
 var ignoreProp = function(){ return true; };
 
-QUnit.module("can-set set.Translate - nested where");
+QUnit.module("can-set-legacy set.Translate - nested where");
 
 QUnit.test('set.equal', function(){
 
@@ -119,10 +119,10 @@ test('set.union', function(){
 
 	// set / subset
 	var res = algebra.union({$where:{}}, {$where:{ completed: true }});
-	deepEqual(res , {$where:{}}, "set / subset");
+	deepEqual(res , {}, "set / subset");
 
 	res = algebra.union({$where:{ completed: true }}, {$where:{}});
-	deepEqual(res , {$where:{}}, "subset / set");
+	deepEqual(res , {}, "subset / set");
 
 	res = algebra.union({$where:{foo: "bar"}},{$where:{foo: "bar"}});
 	deepEqual(res, {$where:{foo: "bar"}}, "equal");
@@ -131,7 +131,7 @@ test('set.union', function(){
 	deepEqual(res, {$where:{foo: ["bar","zed"]}}, "values not equal");
 
 	res = algebra.union({$where:{foo: "bar"}},{$where:{name: "A"}});
-	deepEqual(res,QueryLogic.UNDEFINABLE, "values not equal");
+	deepEqual(res,set.UNDEFINABLE, "values not equal");
 });
 
 test('set.union Array', function(){

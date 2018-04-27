@@ -3,7 +3,7 @@ var QUnit = require("steal-qunit");
 var set = require('../set-core'),
   props = require("../props");
 
-QUnit.module("can-set props.dotNotation");
+QUnit.module("can-set-legacy props.dotNotation");
 
 /*
  * For the dotNotation prop, we define sets like so:

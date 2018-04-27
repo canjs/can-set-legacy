@@ -3,7 +3,7 @@ var QUnit = require("steal-qunit");
 var set = require('../can-set-legacy'),
 	props = set.props;
 
-QUnit.module("can-set compat props.enum");
+QUnit.module("can-set-legacy compat props.enum");
 
 test('enum set.intersection', function(){
 	/*

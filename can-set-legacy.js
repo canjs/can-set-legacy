@@ -6,21 +6,21 @@ var deleteKey = require("can-key/delete/delete");
 var getKey = require("can-key/get/get");
 var helpers = require("can-query-logic/src/helpers");
 var makeEnum = require("can-query-logic/src/types/make-enum");
+var SET = require("can-query-logic/src/set");
 
 var IsBoolean = function(){
 
 };
-makeEnum(IsBoolean,[true, false], function(data) {
-    var values = Array.isArray(data) ? data : [data];
-    return values.map(function(value){
-        if(value === "true") {
-            return true;
-        } else if(value === "false") {
-            return false;
-        } else {
-            return value;
-        }
-    });
+makeEnum(IsBoolean,[true, false], function(value) {
+
+    if(value === "true") {
+        return true;
+    } else if(value === "false") {
+        return false;
+    } else {
+        return value;
+    }
+
 });
 
 function hasKey(obj, keys, parent, parentKey) {
@@ -57,14 +57,14 @@ function convertToLegacySort(value) {
 var defaultAlgebra;
 
 var set = {
-    UNIVERSAL: Query.UNIVERSAL,
+    UNIVERSAL: SET.UNIVERSAL,
     // Nothing
-    EMPTY: Query.EMPTY,
+    EMPTY: SET.EMPTY,
     // The set exists, but we lack the language to represent it.
-    UNDEFINABLE: Query.UNDEFINABLE,
+    UNDEFINABLE: SET.UNDEFINABLE,
 
     // We don't know if this exists. Intersection between two paginated sets.
-    UNKNOWABLE: Query.UNKNOWABLE,
+    UNKNOWABLE: SET.UNKNOWABLE,
     Algebra: function(){
         var mutators = {
             schema: [],
@@ -76,7 +76,7 @@ var set = {
                 if(mutators[prop]) {
                     mutators[prop].push(value[prop]);
                 } else {
-                    throw new Error("can-query-logic: This type of configuration is not supported. Please use can-query-logic directly.");
+                    throw new Error("can-query-logic: This type of configuration is not supported. Please use can-query-logic directly.")
                 }
 
             }
@@ -106,7 +106,7 @@ var set = {
                 }, {filter: data});
             },
             toParams: function(data){
-                if(Query.isSpecial(data)) {
+                if(SET.isSpecial(data)) {
                     return data;
                 }
                 /*if(data === SET.EMPTY) {
@@ -117,22 +117,22 @@ var set = {
                 }*/
                 if(Array.isArray(data.filter)){
                     // OR is not supported ...
-                    return Query.UNDEFINABLE;
+                    return SET.UNDEFINABLE;
                 }
 
-                var filter = data.filter;
+                var filter = data.filter || {};
                 if(hasKey(filter, {
                     "$ne": true,
-                    "$in": function(val){ return val.$in; }
+                    "$in": function(val){ return val["$in"]; }
                 })) {
-                    return Query.UNDEFINABLE;
+                    return SET.UNDEFINABLE;
                 }
 
                 var out = mutators.serialize.reduce(function(last, serializer){
                     return serializer(last);
                 }, data);
 
-                filter = out.filter;
+                filter = out.filter || {};
                 delete out.filter;
                 return canReflect.assign(out, filter);
             }
@@ -167,7 +167,7 @@ var set = {
                     return query;
                 }
             }
-        };
+        }
     },
     props: {
 

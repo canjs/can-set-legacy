@@ -5,7 +5,7 @@ var set = require('../can-set-legacy'),
 
 var canReflect = require("can-reflect");
 
-QUnit.module("can-set props.sort");
+QUnit.module("can-set-legacy props.sort");
 
 test('set.difference', function(){
 	var prop = props.sort('sort'), res;

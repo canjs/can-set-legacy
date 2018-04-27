@@ -3,7 +3,7 @@ var QUnit = require("steal-qunit");
 var set = require('../can-set-legacy'),
 	props = set.props;
 
-QUnit.module("can-set props.rangeInclusive");
+QUnit.module("can-set-legacy props.rangeInclusive");
 
 test('rangeInclusive set.equal', function(){
 
