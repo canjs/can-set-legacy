@@ -6,7 +6,7 @@ var deleteKey = require("can-key/delete/delete");
 var getKey = require("can-key/get/get");
 var helpers = require("can-query-logic/src/helpers");
 var makeEnum = require("can-query-logic/src/types/make-enum");
-var SET = require("can-query-logic©/src/set");
+var SET = require("can-query-logic/src/set");
 
 var IsBoolean = function(){
 
