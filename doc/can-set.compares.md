@@ -1,8 +1,9 @@
 @typedef {Object<String,can-set-legacy.prop>} can-set-legacy.compares Compares
 @parent can-set-legacy.types
 
-
 @description An object of property names and `prop` functions.
+
+@type {Object<String,can-set-legacy.prop>}
 
 ```js
 {

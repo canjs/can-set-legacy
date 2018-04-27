@@ -15,6 +15,6 @@ algebra.count({start: 10, end: 19}) //-> 10
 algebra.count({}) //-> Infinity
 ```
 
-  @param  {can-set-legacy/Set} set [description]
+  @param  {can-set-legacy/Set} set A set.
   @return {Number} The number of items in the set if known, `Infinity`
   if unknown.

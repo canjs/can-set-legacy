@@ -7,7 +7,7 @@
 
 @description
 
-can-set-legacy is a utility for comparing [can-set-legacy/Set sets] that are represented by the parameters commonly passed to service requests.
+`can-set-legacy` supports a legacy `can-set` API that creates a [can-query-logic] instance.
 
 @type {Object}
 
@@ -51,20 +51,20 @@ A [can-set-legacy/Set] is a plain JavaScript object used to represent a
 [https://en.wikipedia.org/wiki/Set_theory#Basic_concepts_and_notation set] of data usually sent to the server to fetch a list of records.  For example,
 a list of all completed todos might be represented by:
 
-```
+```js
 {complete: true}
 ```
 
 This set might be passed to [can-connect/can/map/map.getList] like:
 
-```
+```js
 Todo.getList({complete: true})
 ```
 
 An [can-set-legacy.Algebra] is used to detail the behavior of these sets,
 often using already provided [can-set-legacy.props] comparators:
 
-```
+```js
 var todoAlgebra = new set.Algebra(
   set.props.boolean("complete"),
   set.props.id("_id")
@@ -80,7 +80,7 @@ only the data that hasn't been loaded.
 todoAlgebra.difference( {}, { complete: false } ); //-> {complete: true}
 ```
 
-These algebra's are typically used internally by either [can-connect] or
+These algebra's are typically used by either [can-connect] or
 [can-fixture] to provide these special behaviors:
 
 ```js
@@ -96,7 +96,7 @@ const todoConnection = connect( [
 ], {
 	cacheConnection: cacheConnection,
 	url: "/todos",
-	algebra: todoAlgebra
+	queryLogic: todoAlgebra
 } );
 ```
 
@@ -105,7 +105,7 @@ const todoStore = fixture.store( [
 	{ _id: 1, name: "Do the dishes", complete: true },
 	{ _id: 2, name: "Walk the dog", complete: false }
 ],
-todoAlgebra );
+queryLogic );
 
 fixture( "/todos/{_id}", todoStore );
 ```

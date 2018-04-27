@@ -1,7 +1,9 @@
-@property {{}} can-set-legacy.props props
+@property {Object} can-set-legacy.props props
 @parent can-set-legacy.properties
 
 @description Contains a collection of prop generating functions.
+
+@type {Object}
 
 The following functions create `compares` objects that can be mixed together to create a set `Algebra`.
 
