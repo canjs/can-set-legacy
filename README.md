@@ -5,8 +5,6 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/canjs/can-set-legacy/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/can-set-legacy.svg)](https://www.npmjs.com/package/can-set-legacy)
 [![Travis build status](https://travis-ci.org/canjs/can-set-legacy.svg?branch=master)](https://travis-ci.org/canjs/can-set-legacy)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/canjs/can-set-legacy?branch=master&svg=true)](https://ci.appveyor.com/project/matthewp/can-set-legacy)
-[![Coverage status](https://coveralls.io/repos/github/canjs/can-set-legacy/badge.svg?branch=master)](https://coveralls.io/github/canjs/can-set-legacy?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-set-legacy.svg)](https://greenkeeper.io/)
 
 support the old can-set
