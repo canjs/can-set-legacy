@@ -1,6 +1,6 @@
 {
   "name": "can-set-legacy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "support the old can-set",
   "homepage": "http://canjs.com",
   "repository": {
